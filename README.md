@@ -1,2 +1,15 @@
-# flow_simulator
- implicit pressure explicit saturation 2-phase fluid flow solver!
+## Implicit pressure explicit saturation 2-phase fluid flow solver!
+
+These models illustrate the movement of fluids such as oil, gas, and water inside rocks in the earth. These models were built as a part of my study at Technical University of Delft semester abroad. It was one of the many grad-level classes I took as an undergrad.
+ 
+We start at the most fundamental Navier-Stokes equation of fluid flow, and build up to the IMPES solver, by starting with a simple single phase pressure Darcy solver, then demonstrate 2-phase pressure solver, and finally a 2D IMPES reservoir simulator. 
+  
+Pressure equation for incompressible, semi compressible and compressible fluids is numerically solved in 1-D and 2-D. Homogenous reservoirs are found to have a linear pressure profile between two points at different pressures or between two wells. The velocity of fluid is constant throughout reservoir to maintain continuity. Semi compressible behavior is identical to incompressible when steady state is reached. Compressible fluids generate lower pressure gradient at high pressure because of high density. Stability of the solver is found to depend on the discretization method- implicit or Euler backward method is stable irrespective of time step size. It is also shown to be first order consistent with time and second order consistent with space. 
+
+![pressure](https://github.com/tanvidc/flow_simulator/blob/master/single_phase_pressure_velocity/select_figures.png)
+  
+For enhanced oil recovery, fluids such as water are injected into the reservoir to displace oil. This process is modeled. Finite difference method is used to solve the transport equation for two immiscible fluids in one dimension. Fractional flow formulation of incompressible water saturation transport through incompressible rock is solved numerically with a sequential simulation strategy. Explicit solver upwind method is stable only if Courant–Friedrichs–Lewy condition is valid. It is first order consistent in space. Newton Raphson iteration is used for implicit method which is unconditionally stable. Shock front is seen travel with constant velocity. Increasing relative permeability or decreasing viscosity of injected fluid increases the time until breakthrough. The velocity of fluid is constant throughout reservoir to maintain continuity. 
+
+![saturation](https://github.com/tanvidc/flow_simulator/blob/master/saturation_solver/select_figures.png)
+ 
+Implicit pressure, explicit saturation (IMPES) solver is used to develop a two phase simulator for two dimensional reservoir of quarter five-spot pattern. We assume the fluids and rock are incompressible. For homogenous reservoir, the saturation front is circular and progresses at a decreasing velocity from source to producer. The pressure profile is unsymmetrical, with pressure gradient being low near water front. Increasing oil mobility increases the area swept by water front as well as sweep efficiency. Heterogeneous reservoirs with same average mobility as homogenous ones have lower shock front velocity. Decreasing grid size requires time step to be decreased by square of the divisor for stability. 
